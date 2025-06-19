@@ -1,0 +1,78 @@
+# Custom Audio Transcription - Security .gitignore
+
+# =============================================================================
+# CRITICAL: Never upload these files to GitHub - they contain sensitive data
+# =============================================================================
+
+# Google Cloud Service Account Keys (contains private keys)
+config/credentials.json
+credentials.json
+
+# AWS SSH Private Keys (allows instance access)
+config/whisper-transcription-key.pem
+config/*.pem
+*.pem
+
+# AWS Configuration (may contain account IDs)
+config/spot-fleet-config.json
+
+# Runtime Logs (may contain sensitive info)
+logs/fleet_id_*
+logs/instance_ip_*
+logs/*.log
+
+# Temporary files
+temp_audio/
+*.tmp
+
+# Python virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local development files
+local_test.py
+test_*.py
+debug_*
+
+# =============================================================================
+# Instructions for setting up credentials (for other users):
+# =============================================================================
+# 
+# 1. AWS Authentication:
+#    - Install AWS CLI: brew install awscli
+#    - Configure: aws configure
+#    - No files needed in this repository
+#
+# 2. Google Cloud Service Account:
+#    - Create service account in Google Cloud Console
+#    - Download JSON key file
+#    - Save as config/credentials.json (this file is gitignored)
+#
+# 3. AWS SSH Key:
+#    - Create key pair in AWS EC2 Console
+#    - Download .pem file
+#    - Save as config/whisper-transcription-key.pem (this file is gitignored)
+#
+# 4. Spot Fleet Config:
+#    - Copy template from spot-fleet-config.template.json
+#    - Update with your AWS account details
+#    - Save as config/spot-fleet-config.json (this file is gitignored)
