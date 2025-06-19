@@ -1,0 +1,47 @@
+{
+  "TargetCapacity": 1,
+  "Type": "maintain",
+  "LaunchTemplateConfigs": [
+    {
+      "LaunchTemplateSpecification": {
+        "LaunchTemplateName": "WhisperTranscriptionTemplate",
+        "Version": "1"
+      },
+      "Overrides": [
+        {
+          "InstanceType": "g4dn.xlarge",
+          "SubnetId": "YOUR_SUBNET_ID",
+          "SpotPrice": "0.30",
+          "WeightedCapacity": 1.0
+        }
+      ]
+    }
+  ],
+  "LaunchSpecifications": [
+    {
+      "ImageId": "YOUR_AMI_ID",
+      "InstanceType": "g4dn.xlarge",
+      "KeyName": "YOUR_KEY_NAME",
+      "SecurityGroups": [
+        {
+          "GroupId": "YOUR_SECURITY_GROUP_ID"
+        }
+      ],
+      "SpotPrice": "0.30",
+      "IamInstanceProfile": {
+        "Arn": "arn:aws:iam::YOUR_ACCOUNT_ID:instance-profile/your-instance-profile"
+      },
+      "BlockDeviceMappings": [
+        {
+          "DeviceName": "/dev/sda1",
+          "Ebs": {
+            "VolumeSize": 50,
+            "VolumeType": "gp3",
+            "DeleteOnTermination": true
+          }
+        }
+      ]
+    }
+  ],
+  "OnDemandTargetCapacity": 0
+}
